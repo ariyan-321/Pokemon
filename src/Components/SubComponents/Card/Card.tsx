@@ -1,83 +1,55 @@
-export default function Card() {
-
-    const pokemons=[
-        {
-            id:1,
-            name:"Bulbasaur",
-            image:"/images/img-1",
-            abilities:["Grass","Position"],
-            mark:"#010"
-         
-        },
-        {
-            id:2,
-            name:"Ivysaur",
-            image:"/images/img-2",
-            abilities:["Grass","Position"],
-            mark:"#010"
-         
-        },{
-            id:3,
-            name:"Venusaur",
-            image:"/images/img-3",
-            abilities:["Grass","Position"],
-            mark:"#010"
-         
-        },{
-            id:4,
-            name:"Charmander",
-            image:"/images/img-4",
-            abilities:["Fire"],
-            mark:"#010"
-         
-        },{
-            id:5,
-            name:"Charmeleon",
-            image:"/images/img-5",
-            abilities:["Fire"],
-            mark:"#010"
-         
-        },{
-            id:6,
-            name:"Charizard",
-            image:"/images/img-6",
-            abilities:["Fire","Flying"],
-            mark:"#010"
-         
-        },{
-            id:7,
-            name:"Squirtle",
-            image:"/images/img-7",
-            abilities:["Water"],
-            mark:"#010"
-         
-        },{
-            id:8,
-            name:"Wartortle",
-            image:"/images/img-8",
-            abilities:["Water"],
-            mark:"#010"
-         
-        },{
-            id:9,
-            name:"Blastoise",
-            image:"/images/img-9",
-            abilities:["Water"],
-            mark:"#010"
-         
-        },{
-            id:10,
-            name:"Caterpir",
-            image:"/images/img-10",
-            abilities:["Bug"],
-            mark:"#010"
-         
-        },
-    ]
-
-
-
-  return (
-    <div>Card</div>
-  )
+interface Pokemon {
+  id: number;
+  name: string;
+  image: string;
+  abilities: string[];
+  mark: string;
 }
+
+interface CardProps {
+  pokemon: Pokemon;
+}
+const abilityColors: { [key: string]: string } = {
+    Grass: "bg-[#9BCC50]",
+    Poison: "bg-[#B97FC9]",
+    Fire: "bg-[#FC7C23]",
+    Flying: "bg-[#30A7D7]",
+    Water: "bg-[#30A7D7]",
+    Bug: "bg-[#729F3F]",
+  };
+
+const Card = ({ pokemon }: CardProps) => {
+  return (
+    <div className="relative rounded-br-[100px] bg-white rounded-lg shadow-lg p-6 w-64 min-w-[256px] transition-transform hover:scale-105">
+      {/* Pokemon Image */}
+      <div className="w-full h-40 bg-gray-100 rounded-xl p-4 mb-6">
+        <span className="absolute top-4 left-4 text-gray-600 p-5 text-sm font-bold">
+          {pokemon.mark}
+        </span>
+
+        <img
+          src={pokemon.image}
+          alt={pokemon.name}
+          className="w-full h-full object-contain"
+        />
+      </div>
+      <h3 className="text-center text-2xl font-bold mt-8 mb-4 capitalize">
+        {pokemon.name}
+      </h3>
+
+      {/* Abilities Container */}
+      <div className="flex flex-wrap gap-3 justify-center ">
+        {pokemon.abilities.map((ability: string, index: number) => (
+          <span
+          key={`${pokemon.id}-${ability}`}
+          className={`rounded-lg px-[9px] py-[2px] ${abilityColors[ability] || ""}`}
+        >
+          {ability}
+        </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Card;
