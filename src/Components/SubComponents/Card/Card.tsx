@@ -20,7 +20,7 @@ const abilityColors: { [key: string]: string } = {
 
 const Card = ({ pokemon }: CardProps) => {
   return (
-    <div className="relative rounded-br-[100px] bg-white rounded-lg shadow-lg p-6 w-64 min-w-[256px] transition-transform hover:scale-105">
+    <div className="relative cursor-pointer rounded-br-[100px] bg-white rounded-lg shadow-lg p-6 w-64 min-w-[256px] transition-transform hover:scale-105">
       {/* Pokemon Image */}
       <div className="w-full h-40 bg-gray-100 rounded-xl p-4 mb-6">
         <span className="absolute top-4 left-4 text-gray-600 p-5 text-sm font-bold">
@@ -42,7 +42,7 @@ const Card = ({ pokemon }: CardProps) => {
         {pokemon.abilities.map((ability: string, index: number) => (
           <span
           key={`${pokemon.id}-${ability}`}
-          className={`rounded-lg px-[9px] py-[2px] ${abilityColors[ability] || ""}`}
+          className={`rounded-lg px-[9px] text-white font-semibold py-[2px] ${abilityColors[ability] || ""}`}
         >
           {ability}
         </span>
