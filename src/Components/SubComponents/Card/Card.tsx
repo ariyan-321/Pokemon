@@ -39,7 +39,7 @@ const Card = ({ pokemon }: CardProps) => {
 
       {/* Abilities Container */}
       <div className="flex flex-wrap gap-3 justify-center ">
-        {pokemon.abilities.map((ability: string, index: number) => (
+        {pokemon.abilities.map((ability: string) => (
           <span
           key={`${pokemon.id}-${ability}`}
           className={`rounded-lg px-[9px] text-white font-semibold py-[2px] ${abilityColors[ability] || ""}`}
